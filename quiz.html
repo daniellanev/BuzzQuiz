@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>QUIZ</title>
+
+	<link rel="stylesheet" type="text/css" href="./css/quiz.css">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+	<div class="pic">
+		<img src="./images/frd.jpg">
+	</div>
+	<h1 class="head">HOW WELL DO YOU KNOW</h1>
+	<div class="title">
+		<img class="title" src="./images/title.png">
+	</div>
+
+	<div class="question one">
+
+		<p class="text">Question 1:<br>
+		How many times has ross been married?</p>
+
+		<div class="btn-toolbar">
+  			<button class="answerfor1" onclick="count1(1);">Who's ross?</button>
+  			<button class="answerfor1" onclick="count1(4);">Three times</button>
+  			<button class="answerfor1" onclick="count1(2);">Once</button>
+  			<button class="answerfor1" onclick="count1(3);">Too many times to count</button>
+		</div>
+
+	</div>
+
+	<div class="question two">
+		
+		<p class="text">Question 2:<br>
+		Who hated rachel in high school?</p>
+
+		<input type="image" class="answerfor2" onclick="count2(1);" src="./images/ben.jpg">
+		<input type="image" class="answerfor2" onclick="count2(2);" src="./images/paul.jpg">
+		<input type="image" class="answerfor2" onclick="count2(4);" src="./images/brad.jpg">
+		<input type="image" class="answerfor2" onclick="count2(3);" src="./images/mike.jpg">
+
+	</div>
+
+
+	<div class="question three">
+
+		<p class="text">Question 3:<br>
+		What is in Monica's locked closet?</p>
+		
+		<div class="radio-toolbar">  
+    		
+    		<label for="radio1">Candy and Chocolate</label>
+    		<input type="radio" name="radios" class="answerfor3" onclick="count3(2);">
+
+    		<label for="radio2">Skeletons</label>
+    		<input type="radio" name="radios" class="answerfor3" onclick="count3(1);">
+
+    		<label for="radio3">Cleaning equipment</label>
+    		<input type="radio" name="radios" class="answerfor3" onclick="count3(3);">
+
+    		<label for="radio3">A whole bunch of junk</label>
+    		<input type="radio" name="radios" class="answerfor3" onclick="count3(4);">
+
+		</div>
+
+	</div>
+
+
+	<div class="question four">
+
+		<p class="text">Question 4:<br>
+		In what season does Pheobe become a surrogate?</p>
+
+
+		<input type="range" name="rangeInput" min="0" max="4" onchange="updateTextInput(this.value);">
+		<input type="text" id="textInput">
+
+	</div>
+
+
+	<div class="question five">
+		
+		<p class="text">Question 5:<br>
+		How did Ross and Emily meet?</p>
+
+		<div class="form-group">
+  			<label for="sel1">Select:</label>
+  			<select class="form-control" id="sel1">
+    			<option class="answerfor5" onclick="count5()" value="3">She was his grad student</option>
+    			<option class="answerfor5" onclick="count5()" value="4">She was related to Rachel's boss</option>
+    			<option class="answerfor5" onclick="count5()" value="1">She worked with Pheobe</option>
+    			<option class="answerfor5" onclick="count5()" value="2">She was in the same acting class as joey</option>
+  			</select>
+		</div>
+
+	</div>
+
+	<div>
+
+		<button class="findout" onclick="total();">HOW MUCH DO I LOVE FRIENDS</button>
+
+	</div>
+
+
+	<script type="text/javascript">
+
+		var value = 0;
+
+		var totalscore = [0, 0, 0, 0, 0];
+
+		var count1 = function(score){
+			totalscore[0] = parseInt(score);
+		}
+
+		var count2 = function(score){
+			totalscore[1] = parseInt(score);
+		}
+
+		var count3 = function(score){
+			totalscore[2] = parseInt(score);
+		}
+
+		var updateTextInput = function(val) {
+        	document.getElementById('textInput').value=val;
+        	totalscore[3] =parseInt(val); 
+        }
+
+        var total = function(){
+
+        	var selectOptions = document.getElementsByClassName("answerfor5");
+        	var select = document.getElementById("sel1");
+        	answer = select.selectedIndex;
+
+        	for(var i = 0 ; i < selectOptions.length; i++) {
+        		if(answer == i){
+        			totalscore[4] = parseInt(selectOptions[answer].value); 
+        		} 
+        	}
+
+        	console.log(totalscore.toString());
+        	
+        	var sum = totalscore.reduce(function(a, b) { return a + b; }, 0);
+
+        	if (sum < 5){
+        		alert("YOU DON'T KNOW FRIENDS AT ALL!");
+        	}
+        	else if (sum < 10){
+        		alert("YOU DON'T KNOW FRIENDS WELL!");
+        	}
+        	else if (sum < 15){
+        		alert("YOU KNOW FRIENDS QUITE WELL");
+        	}
+        	else {
+        		alert("YOU KNOW FRIENDS REALLY WELL!");
+        	}
+
+        }
+
+	</script>
+
+</body>
+
+</html>
