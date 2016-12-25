@@ -27,10 +27,10 @@
 		How many times has ross been married?</p>
 
 		<div class="btn-toolbar">
-  			<button class="answerfor1" onclick="count1(1);">Who's ross?</button>
-  			<button class="answerfor1" onclick="count1(4);">Three times</button>
-  			<button class="answerfor1" onclick="count1(2);">Once</button>
-  			<button class="answerfor1" onclick="count1(3);">Too many times to count</button>
+  			<button class="answerfor1" id="q1a1" onclick="count1(1);">Who's ross?</button>
+  			<button class="answerfor1" id="q1a2" onclick="count1(4);">Three times</button>
+  			<button class="answerfor1" id="q1a3" onclick="count1(2);">Once</button>
+  			<button class="answerfor1" id="q1a4" onclick="count1(3);">Too many times to count</button>
 		</div>
 
 	</div>
@@ -54,19 +54,26 @@
 		What is in Monica's locked closet?</p>
 		
 		<div class="radio-toolbar">  
+    		<div class="checkbox">
+    			<label>Candy and Chocolate</label>
+    			<input type="radio" name="radios" class="answerfor3" onclick="count3(2);">
+    		</div>
+
+    		<div class="checkbox">
+	    		<label>Skeletons</label>
+    			<input type="radio" name="radios" class="answerfor3" onclick="count3(1);">
+    		</div>
+
+    		<div class="checkbox">
+	    		<label>Cleaning equipment</label>
+    			<input type="radio" name="radios" class="answerfor3" onclick="count3(3);">
+    		</div>
+
+    		<div class="checkbox">
+	    		<label>A whole bunch of junk</label>
+    			<input type="radio" name="radios" class="answerfor3" onclick="count3(4);">
+    		</div>
     		
-    		<label for="radio1">Candy and Chocolate</label>
-    		<input type="radio" name="radios" class="answerfor3" onclick="count3(2);">
-
-    		<label for="radio2">Skeletons</label>
-    		<input type="radio" name="radios" class="answerfor3" onclick="count3(1);">
-
-    		<label for="radio3">Cleaning equipment</label>
-    		<input type="radio" name="radios" class="answerfor3" onclick="count3(3);">
-
-    		<label for="radio3">A whole bunch of junk</label>
-    		<input type="radio" name="radios" class="answerfor3" onclick="count3(4);">
-
 		</div>
 
 	</div>
@@ -75,13 +82,16 @@
 	<div class="question four">
 
 		<p class="text">Question 4:<br>
-		In what season does Pheobe become a surrogate?</p>
+		How many times did Chandler and Janice break up?</p>
 
-
-		<input type="range" name="rangeInput" min="0" max="4" onchange="updateTextInput(this.value);">
-		<input type="text" id="textInput">
-
-	</div>
+		<div id="slider-cntnr">
+  			<input type="range" id="frame-slider" min="0" max="4" oninput="updateFollowerValue(this.value)"/>
+  			<div id="slider-follow">
+    			<div id="slider-val-cntnr">
+      				<span id="slider-val"></span>
+    			</div>
+  			</div>
+		</div>
 
 
 	<div class="question five">
@@ -90,7 +100,7 @@
 		How did Ross and Emily meet?</p>
 
 		<div class="form-group">
-  			<label for="sel1">Select:</label>
+  			<label>Select:</label>
   			<select class="form-control" id="sel1">
     			<option class="answerfor5" onclick="count5()" value="3">She was his grad student</option>
     			<option class="answerfor5" onclick="count5()" value="4">She was related to Rachel's boss</option>
@@ -102,68 +112,13 @@
 	</div>
 
 	<div>
-
-		<button class="findout" onclick="total();">HOW MUCH DO I LOVE FRIENDS</button>
-
+		<button class="findout" onclick="total();">HOW MUCH DO I LOVE FRIENDS?</button>
 	</div>
 
 
-	<script type="text/javascript">
-
-		var value = 0;
-
-		var totalscore = [0, 0, 0, 0, 0];
-
-		var count1 = function(score){
-			totalscore[0] = parseInt(score);
-		}
-
-		var count2 = function(score){
-			totalscore[1] = parseInt(score);
-		}
-
-		var count3 = function(score){
-			totalscore[2] = parseInt(score);
-		}
-
-		var updateTextInput = function(val) {
-        	document.getElementById('textInput').value=val;
-        	totalscore[3] =parseInt(val); 
-        }
-
-        var total = function(){
-
-        	var selectOptions = document.getElementsByClassName("answerfor5");
-        	var select = document.getElementById("sel1");
-        	answer = select.selectedIndex;
-
-        	for(var i = 0 ; i < selectOptions.length; i++) {
-        		if(answer == i){
-        			totalscore[4] = parseInt(selectOptions[answer].value); 
-        		} 
-        	}
-
-        	console.log(totalscore.toString());
-        	
-        	var sum = totalscore.reduce(function(a, b) { return a + b; }, 0);
-
-        	if (sum < 5){
-        		alert("YOU DON'T KNOW FRIENDS AT ALL!");
-        	}
-        	else if (sum < 10){
-        		alert("YOU DON'T KNOW FRIENDS WELL!");
-        	}
-        	else if (sum < 15){
-        		alert("YOU KNOW FRIENDS QUITE WELL");
-        	}
-        	else {
-        		alert("YOU KNOW FRIENDS REALLY WELL!");
-        	}
-
-        }
-
-	</script>
+	<script type="text/javascript" src="./js/quiz.js"></script>
 
 </body>
 
 </html>
+
